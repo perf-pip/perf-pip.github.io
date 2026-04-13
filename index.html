@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .glass-panel {
+            background: rgba(42, 42, 42, 0.7);
+            backdrop-filter: blur(20px);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #98cbff 0%, #3776ab 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .trace-line {
+            width: 1px;
+            background: linear-gradient(to bottom, #98cbff, transparent);
+        }
+
+        .tonal-shift {
+            background-color: #1c1c1c;
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-error-container": "#ffdad6",
+                        "on-primary-container": "#f5f8ff",
+                        "on-secondary-fixed-variant": "#564500",
+                        "background": "#131313",
+                        "tertiary-fixed": "#e4e2e2",
+                        "on-surface-variant": "#c1c7d0",
+                        "primary": "#98cbff",
+                        "on-error": "#690005",
+                        "surface-bright": "#393939",
+                        "inverse-surface": "#e5e2e1",
+                        "primary-fixed": "#cfe5ff",
+                        "on-tertiary-container": "#faf8f8",
+                        "error-container": "#93000a",
+                        "tertiary-fixed-dim": "#c7c6c6",
+                        "on-surface": "#e5e2e1",
+                        "on-background": "#e5e2e1",
+                        "secondary-container": "#d1aa00",
+                        "primary-fixed-dim": "#98cbff",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "secondary-fixed-dim": "#ecc228",
+                        "surface-dim": "#131313",
+                        "outline": "#8b919a",
+                        "on-secondary-container": "#504000",
+                        "error": "#ffb4ab",
+                        "outline-variant": "#41474f",
+                        "surface-container": "#201f1f",
+                        "surface-container-low": "#1c1b1b",
+                        "on-tertiary-fixed-variant": "#464747",
+                        "secondary": "#efc52b",
+                        "on-primary-fixed": "#001d33",
+                        "inverse-on-surface": "#313030",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container-highest": "#353534",
+                        "surface": "#131313",
+                        "on-primary-fixed-variant": "#004a77",
+                        "primary-container": "#3776ab",
+                        "surface-tint": "#98cbff",
+                        "tertiary-container": "#727272",
+                        "surface-variant": "#353534",
+                        "tertiary": "#c7c6c6",
+                        "on-secondary": "#3c2f00",
+                        "on-tertiary": "#303031",
+                        "on-primary": "#003354",
+                        "on-secondary-fixed": "#231b00",
+                        "inverse-primary": "#1d6296",
+                        "secondary-fixed": "#ffe082"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-background text-on-background font-body selection:bg-primary/30 selection:text-primary">
+    <!-- TopAppBar Navigation Shell -->
+    <header class="fixed top-0 w-full z-50 bg-[#131313]/70 backdrop-blur-xl transition-colors">
+        <nav class="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
+            <div class="flex items-center gap-12">
+                <a class="text-2xl font-black tracking-tighter text-[#e5e2e1] font-headline" href="#">pepip</a>
+                <div class="hidden md:flex gap-8">
+                    <a class="text-[#8b919a] hover:text-[#e5e2e1] font-manrope tracking-tight font-bold transition-colors"
+                        href="#features">Features</a>
+                    <a class="text-[#8b919a] hover:text-[#e5e2e1] font-manrope tracking-tight font-bold transition-colors"
+                        href="#benchmarks">Benchmarks</a>
+                    <a class="text-[#8b919a] hover:text-[#e5e2e1] font-manrope tracking-tight font-bold transition-colors"
+                        href="#docs">Documentation</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <a class="hidden md:flex items-center gap-2 px-4 py-2 text-[#8b919a] hover:bg-[#41474f]/20 transition-colors rounded-lg font-manrope font-bold"
+                    href="https://github.com/perf-pip/pepip">
+                    <span class="material-symbols-outlined text-xl">terminal</span>
+                    GitHub
+                </a>
+                <a
+                    class="bg-gradient-to-br from-primary to-primary-container text-on-primary font-manrope font-bold px-6 py-2.5 rounded-lg active:scale-95 duration-150 shadow-lg"
+                    href="#docs">
+                    Get Started
+                </a>
+            </div>
+        </nav>
+    </header>
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section class="relative min-h-[921px] flex items-center overflow-hidden">
+            <div class="max-w-7xl mx-auto px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 z-10">
+                    <h1
+                        class="text-6xl md:text-8xl font-headline font-extrabold tracking-tighter leading-[0.9] mb-8 text-on-background">
+                        Install packages <span class="gradient-text">once.</span><br />Use them everywhere.
+                    </h1>
+                    <p class="text-xl md:text-2xl text-outline mb-10 max-w-xl font-body leading-relaxed">
+                        The pnpm of Python. Drop-in replacement for pip and uv that saves GBs of disk space using shared
+                        global symlinks.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button
+                            class="px-8 py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-lg font-headline font-bold text-lg active:scale-95 transition-all shadow-xl">
+                            Get Started
+                        </button>
+                        <button
+                            class="px-8 py-4 border-2 border-outline-variant/30 text-primary rounded-lg font-headline font-bold text-lg hover:bg-outline-variant/10 active:scale-95 transition-all">
+                            View on GitHub
+                        </button>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 relative group">
+                    <div
+                        class="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-xl blur-2xl opacity-50 group-hover:opacity-75 transition duration-1000">
+                    </div>
+                    <div
+                        class="relative bg-surface-container-highest border border-outline-variant/20 rounded-xl overflow-hidden shadow-2xl">
+                        <div
+                            class="bg-surface-container-highest px-4 py-2 border-b border-outline-variant/20 flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+                            <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                            <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+                            <span class="ml-4 text-xs font-label text-outline uppercase tracking-widest">terminal —
+                                pepip</span>
+                        </div>
+                        <div class="p-6 font-mono text-sm space-y-2">
+                            <div class="flex gap-3">
+                                <span class="text-secondary">$</span>
+                                <span class="text-primary">pepip</span>
+                                <span class="text-tertiary">install pandas</span>
+                            </div>
+                            <div class="text-outline">Checking global store...</div>
+                            <div class="text-secondary">Found pandas==2.2.0 in ~/.pepip/store</div>
+                            <div class="text-on-background">Creating symlink in ./site-packages...</div>
+                            <div class="text-primary">Done in 0.04s (using uv)</div>
+                            <div class="flex gap-3 pt-4">
+                                <span class="text-secondary">$</span>
+                                <span class="text-on-background animate-pulse">|</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- The Problem Section -->
+        <section class="py-32 bg-surface-container-lowest">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div>
+                        <div
+                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-error-container/20 text-error font-label text-xs font-bold uppercase tracking-widest mb-6">
+                            The Redundancy Tax
+                        </div>
+                        <h2 class="text-4xl md:text-5xl font-headline font-bold tracking-tight mb-6">
+                            Stop wasting your disk space on duplicate dependencies.
+                        </h2>
+                        <p class="text-outline text-lg mb-8 leading-relaxed">
+                            Traditional pip installs complete package copies into every virtual environment. Developing
+                            5 projects with Pandas? That's 5 copies of the same binary blobs eating your SSD.
+                        </p>
+                        <div class="flex gap-4">
+                            <div class="trace-line h-24"></div>
+                            <div class="space-y-4">
+                                <div class="p-4 bg-surface-container rounded-lg border-l-4 border-error">
+                                    <span class="font-label font-bold text-on-surface">Standard pip: 2.5GB per
+                                        env</span>
+                                </div>
+                                <div class="p-4 bg-surface-container rounded-lg border-l-4 border-secondary">
+                                    <span class="font-label font-bold text-on-surface">Time lost syncing:
+                                        15min/day</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div
+                            class="p-6 bg-surface-container border border-outline-variant/10 rounded-xl flex flex-col items-center justify-center text-center">
+                            <div
+                                class="w-16 h-16 rounded-full bg-surface-variant flex items-center justify-center mb-4">
+                                <span class="material-symbols-outlined text-error text-3xl">folder</span>
+                            </div>
+                            <span class="font-bold text-on-surface">Project A</span>
+                            <span class="text-xs text-outline">Pandas (120MB)</span>
+                        </div>
+                        <div
+                            class="p-6 bg-surface-container border border-outline-variant/10 rounded-xl flex flex-col items-center justify-center text-center">
+                            <div
+                                class="w-16 h-16 rounded-full bg-surface-variant flex items-center justify-center mb-4">
+                                <span class="material-symbols-outlined text-error text-3xl">folder</span>
+                            </div>
+                            <span class="font-bold text-on-surface">Project B</span>
+                            <span class="text-xs text-outline">Pandas (120MB)</span>
+                        </div>
+                        <div
+                            class="p-6 bg-surface-container border border-outline-variant/10 rounded-xl flex flex-col items-center justify-center text-center">
+                            <div
+                                class="w-16 h-16 rounded-full bg-surface-variant flex items-center justify-center mb-4">
+                                <span class="material-symbols-outlined text-error text-3xl">folder</span>
+                            </div>
+                            <span class="font-bold text-on-surface">Project C</span>
+                            <span class="text-xs text-outline">Pandas (120MB)</span>
+                        </div>
+                        <div
+                            class="p-6 bg-primary-container/20 border-2 border-dashed border-primary/40 rounded-xl flex flex-col items-center justify-center text-center group cursor-help">
+                            <span class="material-symbols-outlined text-primary text-4xl mb-2">add_circle</span>
+                            <span class="font-bold text-primary">Potential Savings</span>
+                            <span class="text-xs text-primary/70">80% Disk Reduction</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Solution Section -->
+        <section class="py-32 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-8 relative z-10">
+                <div class="text-center max-w-3xl mx-auto mb-20">
+                    <h2 class="text-4xl md:text-6xl font-headline font-bold tracking-tight mb-8">The Symlink Revolution
+                    </h2>
+                    <p class="text-xl text-outline font-body">
+                        Pepip stores every version of every package in a single, central store on your machine. Local
+                        environments simply link to these files.
+                    </p>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div
+                            class="w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                        <div
+                            class="p-8 bg-surface-container-high rounded-2xl border border-outline-variant/20 shadow-xl text-center">
+                            <div
+                                class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <span class="material-symbols-outlined text-primary">database</span>
+                            </div>
+                            <h3 class="text-xl font-headline font-bold mb-4">Global Store</h3>
+                            <p class="text-outline text-sm">One immutable instance of every package at
+                                <code>~/.pepip/store</code></p>
+                        </div>
+                        <div
+                            class="p-8 bg-surface-container-high rounded-2xl border border-primary/30 shadow-[0_0_40px_rgba(152,203,255,0.1)] text-center scale-105 z-10">
+                            <div
+                                class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <span class="material-symbols-outlined text-secondary">link</span>
+                            </div>
+                            <h3 class="text-xl font-headline font-bold mb-4">Content Addressing</h3>
+                            <p class="text-on-surface text-sm">Hard-links and symlinks prevent accidental mutations and
+                                maximize sharing.</p>
+                        </div>
+                        <div
+                            class="p-8 bg-surface-container-high rounded-2xl border border-outline-variant/20 shadow-xl text-center">
+                            <div
+                                class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <span class="material-symbols-outlined text-primary">bolt</span>
+                            </div>
+                            <h3 class="text-xl font-headline font-bold mb-4">Zero Copy</h3>
+                            <p class="text-outline text-sm">Creating an environment is as fast as your OS can create
+                                directory entries.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Features Bento Grid -->
+        <section class="py-32 bg-surface-container-low" id="features">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                    <div
+                        class="md:col-span-8 p-10 bg-surface-container rounded-3xl border border-outline-variant/10 flex flex-col justify-between">
+                        <div>
+                            <span class="material-symbols-outlined text-primary text-4xl mb-6"
+                                data-weight="fill">speed</span>
+                            <h3 class="text-3xl font-headline font-bold mb-4">Lightning Fast (Powered by uv)</h3>
+                            <p class="text-outline text-lg max-w-xl">Pepip uses the high-performance 'uv' resolver and
+                                installer under the hood. It’s written in Rust, but optimized for global storage.</p>
+                        </div>
+                        <div
+                            class="mt-12 flex items-center gap-4 p-4 bg-background/50 rounded-xl border border-outline-variant/20">
+                            <code class="text-secondary font-label">pepip install numpy scipy torch</code>
+                            <span class="text-xs text-on-surface-variant">| Resolved in 120ms</span>
+                        </div>
+                    </div>
+                    <div
+                        class="md:col-span-4 p-10 bg-surface-container-highest rounded-3xl border border-outline-variant/10">
+                        <span class="material-symbols-outlined text-secondary text-4xl mb-6">hard_drive</span>
+                        <h3 class="text-2xl font-headline font-bold mb-4">Disk Efficient</h3>
+                        <p class="text-outline">Save up to 90% of disk space in large monorepos or multi-project
+                            workstations.</p>
+                    </div>
+                    <div class="md:col-span-4 p-10 bg-primary-container/10 rounded-3xl border border-primary/20">
+                        <span class="material-symbols-outlined text-primary text-4xl mb-6">groups</span>
+                        <h3 class="text-2xl font-headline font-bold mb-4">Team Shared</h3>
+                        <p class="text-outline">Set <code>PEPIP_HOME</code> to a shared drive to sync dependencies
+                            across your entire internal network instanty.</p>
+                    </div>
+                    <div class="md:col-span-8 p-10 bg-surface-container rounded-3xl border border-outline-variant/10">
+                        <div class="flex flex-col md:flex-row gap-8 items-start">
+                            <div class="flex-1">
+                                <span class="material-symbols-outlined text-primary text-4xl mb-6">swap_horiz</span>
+                                <h3 class="text-3xl font-headline font-bold mb-4">Drop-in Replacement</h3>
+                                <p class="text-outline text-lg">Use the commands you already know. No new learning
+                                    curve, no specialized configuration files required.</p>
+                            </div>
+                            <div
+                                class="flex-shrink-0 space-y-2 font-mono text-xs p-6 bg-background rounded-xl border border-outline-variant/10">
+                                <div class="text-outline-variant"># Before</div>
+                                <div class="text-error">pip install django</div>
+                                <div class="pt-4 text-outline-variant"># After</div>
+                                <div class="text-primary">pepip install django</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Benchmarks Section -->
+        <section class="py-32" id="benchmarks">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="flex flex-col lg:flex-row gap-16 items-center">
+                    <div class="lg:w-1/2">
+                        <h2 class="text-5xl font-headline font-extrabold tracking-tight mb-8">Numbers don't lie.</h2>
+                        <p class="text-outline text-lg mb-10 leading-relaxed">
+                            We benchmarked pepip against standard pip and vanilla uv on a machine with 50 existing
+                            virtual environments. The difference isn't just incremental—it's transformative.
+                        </p>
+                        <div class="space-y-8">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-label font-bold">Disk Usage Reduction</span>
+                                    <span class="text-primary font-bold">-82%</span>
+                                </div>
+                                <div class="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary rounded-full" style="width: 82%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-label font-bold">Cold Install Latency</span>
+                                    <span class="text-secondary font-bold">-41%</span>
+                                </div>
+                                <div class="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+                                    <div class="h-full bg-secondary rounded-full" style="width: 41%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-label font-bold">Subsequent Installs</span>
+                                    <span class="text-primary font-bold">-99.8%</span>
+                                </div>
+                                <div class="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary rounded-full" style="width: 99.8%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 w-full">
+                        <div
+                            class="p-10 bg-surface-container-high rounded-3xl border border-outline-variant/10 shadow-2xl relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-4 opacity-5">
+                                <span class="material-symbols-outlined text-[200px]">analytics</span>
+                            </div>
+                            <div class="relative z-10">
+                                <h4 class="text-2xl font-headline font-bold mb-8">Storage Efficiency</h4>
+                                <div class="flex items-end gap-6 h-64">
+                                    <div class="flex-1 flex flex-col items-center gap-4">
+                                        <div class="w-full bg-outline-variant/20 rounded-t-lg h-full"></div>
+                                        <span class="text-xs font-label">pip</span>
+                                    </div>
+                                    <div class="flex-1 flex flex-col items-center gap-4">
+                                        <div class="w-full bg-outline-variant/40 rounded-t-lg h-[80%]"></div>
+                                        <span class="text-xs font-label">uv</span>
+                                    </div>
+                                    <div class="flex-1 flex flex-col items-center gap-4">
+                                        <div
+                                            class="w-full bg-gradient-to-t from-primary to-primary-container rounded-t-lg h-[15%]">
+                                        </div>
+                                        <span class="text-xs font-label font-bold text-primary">pepip</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Installation Section -->
+        <section class="py-32 bg-[#1c1c1c]" id="docs">
+            <div class="max-w-4xl mx-auto px-8 text-center">
+                <h2 class="text-4xl font-headline font-bold mb-12">Get started in seconds.</h2>
+                <div class="space-y-6 text-left">
+                    <div
+                        class="p-8 bg-background border border-outline-variant/20 rounded-2xl group transition-all hover:border-primary/50">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-label text-outline uppercase tracking-widest">Install pepip</span>
+                            <button
+                                class="copy-btn material-symbols-outlined text-outline group-hover:text-primary transition-colors"
+                                type="button"
+                                aria-label="Copy install command"
+                                data-copy="pip install pepip">content_copy</button>
+                        </div>
+                        <code
+                            class="text-xl md:text-2xl font-mono text-tertiary">pip install <span class="text-primary">pepip</span></code>
+                    </div>
+                    <div
+                        class="p-8 bg-background border border-outline-variant/20 rounded-2xl group transition-all hover:border-secondary/50">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-label text-outline uppercase tracking-widest">Typical Usage</span>
+                            <button
+                                class="copy-btn material-symbols-outlined text-outline group-hover:text-secondary transition-colors"
+                                type="button"
+                                aria-label="Copy usage command"
+                                data-copy="pepip install numpy scipy scikit-learn">content_copy</button>
+                        </div>
+                        <code
+                            class="text-xl md:text-2xl font-mono text-tertiary">pepip install <span class="text-secondary">numpy scipy scikit-learn</span></code>
+                    </div>
+                </div>
+                <p class="mt-10 text-outline">
+                    Works on macOS, Linux, and Windows.
+                </p>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-[#131313] border-t border-[#41474f]/15">
+        <div class="max-w-7xl mx-auto px-12 py-16 flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <span class="font-black text-[#e5e2e1] text-2xl font-headline tracking-tighter">pepip</span>
+                <p class="text-[#8b919a] font-manrope text-sm max-w-xs text-center md:text-left">
+                    © 2026 pepip. Built for the Orchestrated Terminal. The next-generation Python package installer.
+                </p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-12">
+                <div class="flex flex-col gap-3">
+                    <span class="font-label text-xs font-bold uppercase tracking-widest text-outline">Product</span>
+                    <a class="text-[#8b919a] hover:text-[#efc52b] font-manrope text-sm transition-opacity duration-300"
+                        href="#">Features</a>
+                    <a class="text-[#8b919a] hover:text-[#efc52b] font-manrope text-sm transition-opacity duration-300"
+                        href="#">Benchmarks</a>
+                    <a class="text-[#8b919a] hover:text-[#efc52b] font-manrope text-sm transition-opacity duration-300"
+                        href="#">Changelog</a>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <span class="font-label text-xs font-bold uppercase tracking-widest text-outline">Resources</span>
+                    <a class="text-[#8b919a] hover:text-[#efc52b] font-manrope text-sm transition-opacity duration-300"
+                        href="#">Documentation</a>
+                    <a class="text-[#8b919a] hover:text-[#efc52b] font-manrope text-sm transition-opacity duration-300"
+                        href="#">Security</a>
+                    <a class="text-[#8b919a] hover:text-[#efc52b] font-manrope text-sm transition-opacity duration-300"
+                        href="#">Status</a>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <span class="font-label text-xs font-bold uppercase tracking-widest text-outline">Legal</span>
+                    <a class="text-[#8b919a] hover:text-[#efc52b] font-manrope text-sm transition-opacity duration-300"
+                        href="#">Privacy</a>
+                    <a class="text-[#8b919a] hover:text-[#efc52b] font-manrope text-sm transition-opacity duration-300"
+                        href="#">Terms</a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-12 py-8 border-t border-outline-variant/10 text-center">
+            <div class="inline-flex items-center gap-2 text-outline text-xs">
+                <span class="material-symbols-outlined text-sm">terminal</span>
+                Built with <span class="text-primary">pepip</span> for Python Developers
+            </div>
+        </div>
+    </footer>
+    <script>
+    document.querySelectorAll('.copy-btn').forEach((button) => {
+        button.addEventListener('click', async () => {
+            const command = button.getAttribute('data-copy');
+            if (!command) {
+                return;
+            }
+
+            try {
+                await navigator.clipboard.writeText(command);
+                const previousText = button.textContent;
+                button.textContent = 'check';
+                setTimeout(() => {
+                    button.textContent = previousText;
+                }, 1200);
+            } catch {
+                button.textContent = 'error';
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>
